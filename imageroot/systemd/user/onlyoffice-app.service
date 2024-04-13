@@ -1,0 +1,42 @@
+#
+# Copyright (C) 2022 Nethesis S.r.l.
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+[Unit]
+Description=Podman  onlyoffice-app.service
+BindsTo=onlyoffice.service
+After=onlyoffice.service mariadb-app.service
+
+[Service]
+Environment=PODMAN_SYSTEMD_UNIT=%n
+EnvironmentFile=%S/state/environment
+EnvironmentFile=-%S/state/smarthost.env
+WorkingDirectory=%S/state
+Restart=always
+TimeoutStopSec=70
+ExecStartPre=/bin/mkdir -p tmp
+ExecStartPre=/bin/rm -f %t/onlyoffice-app.pid %t/onlyoffice-app.ctr-id
+ExecStartPre=-runagent discover-smarthost
+ExecStart=/usr/bin/podman run --conmon-pidfile %t/onlyoffice-app.pid \
+    --cidfile %t/onlyoffice-app.ctr-id --cgroups=no-conmon \
+    --pod-id-file %t/onlyoffice.pod-id --replace -d --name  onlyoffice-app \
+    --volume onlyoffice-app:/var/www/html/:Z \
+    --volume ./tmp:/tmp:Z \
+    --env=MARIADB_* \
+    --env MARIADB_DB_TYPE=mysql \
+    --env MARIADB_DB_HOST=127.0.0.1 \
+    --env MARIADB_DB_PORT=3306 \
+    --env MARIADB_DB_USER=onlyoffice \
+    --env MARIADB_DB_PASSWORD=onlyoffice \
+    --env MARIADB_DB_NAME=onlyoffice \
+    ${NGINX_IMAGE}
+ExecStop=/usr/bin/podman stop --ignore --cidfile %t/onlyoffice-app.ctr-id -t 10
+ExecReload=/usr/bin/podman kill -s HUP onlyoffice-app
+SyslogIdentifier=%u
+ExecStopPost=/usr/bin/podman rm --ignore -f --cidfile %t/onlyoffice-app.ctr-id
+PIDFile=%t/onlyoffice-app.pid
+Type=forking
+
+[Install]
+WantedBy=default.target
