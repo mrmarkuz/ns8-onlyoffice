@@ -10,8 +10,8 @@
 
 [Unit]
 Description=Podman onlyoffice.service
-Requires=mariadb-app.service onlyoffice-app.service
-Before=mariadb-app.service onlyoffice-app.service
+Requires=onlyoffice-app.service
+Before=onlyoffice-app.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n

@@ -15,7 +15,10 @@
         "test_field": "Testfeld",
         "configure_instance": "{instance} konfigurieren",
         "save": "Speichern",
-        "title": "Einstellungen"
+        "title": "Einstellungen",
+        "onlyoffice_fqdn": "Onlyoffice hostname (FQDN)",
+        "lets_encrypt": "Request LE Certificate",
+        "http_to_https": "Force HTTPS"
     },
     "common": {
         "required": "erforderlich",
