@@ -9,6 +9,10 @@ set -e
 # Redirect any output to the journal (stderr)
 exec 1>&2
 
+# Create JWT secret if not already done
+touch environment
+grep -q JWT_SECRET environment || echo "JWT_SECRET=$(head -c 1024 /dev/urandom | tr -cd A-Za-z0-9 | head -c 32)" >> environment
+
 # If the control reaches this step, the service can be enabled and started
 
 touch smarthost.env
