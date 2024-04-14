@@ -6,14 +6,14 @@
   "categories": [],
   "authors": [
     {
-      "name": "Name Surname",
-      "email": "author@yourmail.org"
+      "name": "Markus Neuberger",
+      "email": "dev@markusneuberger.at"
     }
   ],
   "docs": {
-    "documentation_url": "https://docs.onlyoffice.com/",
-    "bug_url": "https://github.com/NethServer/dev",
-    "code_url": "https://github.com/author/ns8-onlyoffice"
+    "documentation_url": "https://helpcenter.onlyoffice.com/userguides/docs-de.aspx",
+    "bug_url": "https://community.nethserver.org",
+    "code_url": "https://github.com/mrmarkuz/ns8-onlyoffice"
   },
-  "source": "ghcr.io/nethserver/onlyoffice"
+  "source": "ghcr.io/mrmarkuz/onlyoffice"
 }
