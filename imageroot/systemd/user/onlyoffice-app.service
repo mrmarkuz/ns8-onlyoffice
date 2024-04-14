@@ -21,6 +21,7 @@ ExecStartPre=/bin/rm -f %t/onlyoffice-app.pid %t/onlyoffice-app.ctr-id
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/onlyoffice-app.pid \
     --cidfile %t/onlyoffice-app.ctr-id --cgroups=no-conmon \
     --pod-id-file %t/onlyoffice.pod-id --replace -d --name  onlyoffice-app \
+    --env-file=%S/state/environment \
     --volume onlyoffice-logs:/var/log/onlyoffice:Z \
     --volume onlyoffice-data:/var/www/onlyoffice/Data:Z \
     ${DOCUMENTSERVER_IMAGE}
