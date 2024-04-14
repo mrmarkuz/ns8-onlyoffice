@@ -4,7 +4,7 @@
 #
 
 [Unit]
-Description=Podman  onlyoffice-app.service
+Description=Podman onlyoffice-app.service
 BindsTo=onlyoffice.service
 After=onlyoffice.service
 
@@ -17,13 +17,12 @@ Restart=always
 TimeoutStopSec=70
 #ExecStartPre=/bin/mkdir -p tmp
 ExecStartPre=/bin/rm -f %t/onlyoffice-app.pid %t/onlyoffice-app.ctr-id
+ExecStartPre=/usr/bin/grep -q JWT_SECRET environment || echo "JWT_SECRET=$(head -c 1024 /dev/urandom | tr -cd '[[:alnum:]]' | head -c 12)" >> environment
 #ExecStartPre=-runagent discover-smarthost
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/onlyoffice-app.pid \
     --cidfile %t/onlyoffice-app.ctr-id --cgroups=no-conmon \
-    --pod-id-file %t/onlyoffice.pod-id --replace -d --name  onlyoffice-app \
+    --pod-id-file %t/onlyoffice.pod-id --replace -d --name onlyoffice-app \
     --env-file=%S/state/environment \
-    --volume onlyoffice-logs:/var/log/onlyoffice:Z \
-    --volume onlyoffice-data:/var/www/onlyoffice/Data:Z \
     ${DOCUMENTSERVER_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/onlyoffice-app.ctr-id -t 10
 ExecReload=/usr/bin/podman kill -s HUP onlyoffice-app
