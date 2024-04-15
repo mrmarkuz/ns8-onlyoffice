@@ -35,6 +35,22 @@ To get the JWT secret that needs to be configured in client apps like Nextcloud:
 - Set the "Onlyoffice Docs address" that is the FQDN pf the Onlyoffice app.
 - Set the "Secret key" that you got from the previous chapter.
 
+## Use a self signed cert or how to disable the certificate check
+
+In the following examples onlyoffice6 is used as app instance name, please change it to match your environment.
+
+Edit the environment file and add "USE_UNAUTHORIZED_STORAGE=true":
+
+    runagent -m onlyoffice6 nano environment
+
+Alternative command to add the environment variable:
+
+    runagent -m onlyoffice6 bash -c "grep -q USE_UNAUTHORIZED_STORAGE environment || echo USE_UNAUTHORIZED_STORAGE=true >> environment"
+
+Restart onlyoffice to apply the changes:
+
+    runagent -m onlyoffice6 systemctl --user restart onlyoffice-app
+
 ## Uninstall
 
 To uninstall the instance:
