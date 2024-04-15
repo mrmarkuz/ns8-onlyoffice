@@ -16,9 +16,9 @@
         "configure_instance": "{instance} konfigurieren",
         "save": "Speichern",
         "title": "Einstellungen",
-        "onlyoffice_fqdn": "Onlyoffice hostname (FQDN)",
-        "lets_encrypt": "Request LE Certificate",
-        "http_to_https": "Force HTTPS"
+        "onlyoffice_fqdn": "Onlyoffice Hostname (FQDN)",
+        "lets_encrypt": "LE Zertifikat anfordern",
+        "http_to_https": "HTTPS erzwingen"
     },
     "common": {
         "required": "erforderlich",
@@ -39,7 +39,11 @@
         "title": "Status",
         "installation_node": "Knoten der Installation",
         "node": "Knoten",
-        "no_volumes": "keine Volumen"
+        "no_volumes": "keine Volumen",
+        "onlyoffice_webapp": "Onlyoffice Web App",
+        "not_configured": "Nicht konfiguriert",
+        "open_webapp": "Onlyoffice öffnen",
+        "configure": "Konfigurieren"
     },
     "about": {
         "title": "Über"
