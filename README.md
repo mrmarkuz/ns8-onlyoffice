@@ -37,6 +37,8 @@ To get the JWT secret that needs to be configured in client apps like Nextcloud:
 
 ## Use a self signed cert or how to disable the certificate check
 
+Open the Onlyoffice web app in your browser and allow the self-signed certificate to avoid an `ONLYOFFICE cannot be reached. Please contact admin` error in Nextcloud.
+
 In the following examples onlyoffice6 is used as app instance name, please change it to match your environment.
 
 Edit the environment file and add "USE_UNAUTHORIZED_STORAGE=true":
