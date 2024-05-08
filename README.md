@@ -32,7 +32,7 @@ To get the JWT secret that needs to be configured in client apps like Nextcloud:
 
 - Install the ONLYOFFICE app
 - Go to Nextcloud administration Onlyoffice app settings
-- Set the "Onlyoffice Docs address" that is the FQDN pf the Onlyoffice app.
+- Set the "Onlyoffice Docs address" that is the FQDN of the Onlyoffice app.
 - Set the "Secret key" that you got from the previous chapter.
 
 ## Use a self signed cert or how to disable the certificate check
