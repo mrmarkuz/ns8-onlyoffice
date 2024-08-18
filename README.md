@@ -20,7 +20,7 @@ Output example:
 
 ## Configure
 
-The FQDN needs to be configured in the Web UI app settings. The FQDN is required.
+The FQDN needs to be configured in the Web UI app settings. The FQDN is required. It should be a unique FQDN that's not already used in your NS8 else Onlyoffice won't be reachable.
 
 ## JWT Secret
 
