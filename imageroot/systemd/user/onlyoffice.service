@@ -21,7 +21,7 @@ TimeoutStopSec=70
 ExecStartPre=/bin/rm -f %t/onlyoffice.pid %t/onlyoffice.pod-id
 ExecStartPre=/usr/bin/podman pod create --infra-conmon-pidfile %t/onlyoffice.pid \
     --pod-id-file %t/onlyoffice.pod-id \
-    --network=slirp4netns:allow_host_loopback=true \
+    --network=slirp4netns \
     --name onlyoffice \
     --publish 127.0.0.1:${TCP_PORT}:80 \
     --replace
