@@ -27,6 +27,7 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/onlyoffice-app.pid \
     --volume onlyoffice-redis:/var/lib/redis:Z \
     --volume onlyoffice-db:/var/lib/postgresql:Z \
     --volume onlyoffice-fonts:/usr/share/fonts/truetype/custom:Z \
+    --volume onlyoffice-etc:/etc/onlyoffice/documentserver:Z \
     ${DOCUMENTSERVER_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/onlyoffice-app.ctr-id -t 10
 ExecReload=/usr/bin/podman kill -s HUP onlyoffice-app
