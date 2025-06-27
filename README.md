@@ -35,6 +35,12 @@ To get the JWT secret that needs to be configured in client apps like Nextcloud:
 - Set the "Onlyoffice Docs address" that is the FQDN of the Onlyoffice app.
 - Set the "Secret key" that you got from the previous chapter.
 
+## Customize configuration
+
+Since this setup uses the official Docker image, the local.json file is regenerated each time the container starts, meaning it’s not directly mappable or persistent on the host. Any manual changes made to local.json inside the container are lost after a restart.
+
+The proper workaround is to create the file `/home/onlyoffice1/.local/share/containers/storage/volumes/onlyoffice-etc/_data/local-production-linux.json`. This file takes precedence over the default configuration and remains persistent across container restarts. Any changes made there are applied automatically on startup.
+
 ## Use a self signed cert or how to disable the certificate check
 
 Open the Onlyoffice web app in your browser and allow the self-signed certificate to avoid an `ONLYOFFICE cannot be reached. Please contact admin` error in Nextcloud.
@@ -43,15 +49,15 @@ In the following examples onlyoffice6 is used as app instance name, please chang
 
 Edit the environment file and add "USE_UNAUTHORIZED_STORAGE=true":
 
-    runagent -m onlyoffice6 nano environment
+    runagent -m onlyoffice1 nano environment
 
 Alternative command to add the environment variable:
 
-    runagent -m onlyoffice6 bash -c "grep -q USE_UNAUTHORIZED_STORAGE environment || echo USE_UNAUTHORIZED_STORAGE=true >> environment"
+    runagent -m onlyoffice1 bash -c "grep -q USE_UNAUTHORIZED_STORAGE environment || echo USE_UNAUTHORIZED_STORAGE=true >> environment"
 
 Restart onlyoffice to apply the changes:
 
-    runagent -m onlyoffice6 systemctl --user restart onlyoffice-app
+    runagent -m onlyoffice1 systemctl --user restart onlyoffice-app
 
 ## Uninstall
 
