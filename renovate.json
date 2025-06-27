@@ -10,8 +10,8 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": [
-        "build-images.sh"
+      "managerFilePatterns": [
+        "/build-images.sh/"
       ],
       "matchStrings": [
         "docker\\.io/onlyoffice/documentserver:(?<currentValue>[-0-9\\.a-z]+)"
