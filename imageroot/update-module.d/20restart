@@ -12,4 +12,7 @@ set -e
 # Redirect any output to the journal (stderr)
 exec 1>&2
 
+# Remove onlyoffice-etc volume to make the nginx update work
+podman volume rm -f onlyoffice-etc
+
 systemctl --user try-restart onlyoffice.service
