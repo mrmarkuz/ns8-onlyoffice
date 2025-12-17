@@ -26,6 +26,7 @@ set_route_data = {
     'http2https': h2hs,
     'lets_encrypt_check': True,
     'lets_encrypt_cleanup': True,
+    'headers': {"request":{"X-Forwarded-Proto": "https"}},
 }
 if 'lets_encrypt' in data:
     set_route_data['lets_encrypt'] = data['lets_encrypt']
