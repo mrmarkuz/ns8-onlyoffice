@@ -35,6 +35,10 @@ To get the JWT secret that needs to be configured in client apps like Nextcloud:
 - Set the "Onlyoffice Docs address" that is the FQDN of the Onlyoffice app.
 - Set the "Secret key" that you got from the previous chapter.
 
+## Ad blockers
+
+Since Onlyoffice 9.4 (ns8-onlyoffice 1.1.7) ad blockers may block Onlyoffice so you may need to add an exception.
+
 ## Customize configuration
 
 Since this setup uses the official Docker image, the local.json file is regenerated each time the container starts, meaning it’s not directly mappable or persistent on the host. Any manual changes made to local.json inside the container are lost after a restart.
