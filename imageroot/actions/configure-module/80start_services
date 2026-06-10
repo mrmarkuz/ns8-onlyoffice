@@ -17,5 +17,5 @@ grep -q JWT_SECRET environment || echo "JWT_SECRET=$(head -c 1024 /dev/urandom |
 
 touch smarthost.env
 
-systemctl --user enable onlyoffice.service
-systemctl --user restart onlyoffice.service
+systemctl --user enable euro-office.service
+systemctl --user restart euro-office.service

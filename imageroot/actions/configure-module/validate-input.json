@@ -1,11 +1,11 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Configure onlyoffice",
-    "$id": "http://nethserver.org/json-schema/task/input/onlyoffice/configure-module",
-    "description": "Configure onlyoffice",
+    "title": "Configure euro-office",
+    "$id": "http://nethserver.org/json-schema/task/input/euro-office/configure-module",
+    "description": "Configure euro-office",
     "examples": [
         {
-            "host": "onlyoffice.domain.org",
+            "host": "euro-office.domain.org",
             "http2https": true,
             "lets_encrypt": true
         }
@@ -17,7 +17,7 @@
     "properties": {
         "host": {
             "type": "string",
-            "description": "Host name for the application, like 'onlyoffice.domain.org'",
+            "description": "Host name for the application, like 'euro-office.domain.org'",
             "format": "hostname",
             "pattern": "\\."
         },

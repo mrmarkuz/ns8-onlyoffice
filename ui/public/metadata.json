@@ -1,5 +1,5 @@
 {
-  "name": "onlyoffice",
+  "name": "euro-office",
   "description": {
     "en": "Online document editor"
   },
@@ -11,9 +11,9 @@
     }
   ],
   "docs": {
-    "documentation_url": "https://helpcenter.onlyoffice.com/userguides/docs-de.aspx",
+    "documentation_url": "https://helpcenter.euro-office.com/userguides/docs-de.aspx",
     "bug_url": "https://community.nethserver.org",
-    "code_url": "https://github.com/mrmarkuz/ns8-onlyoffice"
+    "code_url": "https://github.com/mrmarkuz/ns8-euro-office"
   },
-  "source": "ghcr.io/mrmarkuz/onlyoffice"
+  "source": "ghcr.io/mrmarkuz/euro-office"
 }

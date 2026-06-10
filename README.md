@@ -1,4 +1,4 @@
-# ns8-onlyoffice
+# ns8-euro-office
 
 This is the Onlyoffice app for NethServer 8.
 
@@ -11,12 +11,12 @@ Install via Software center:
 
 Instantiate the module on CLI with:
 
-    add-module ghcr.io/mrmarkuz/onlyoffice:latest 1
+    add-module ghcr.io/mrmarkuz/euro-office:latest 1
 
 The output of the command will return the instance name.
 Output example:
 
-    {"module_id": "onlyoffice1", "image_name": "onlyoffice", "image_url": "ghcr.io/mrmarkuz/onlyoffice:latest"}
+    {"module_id": "euro-office1", "image_name": "euro-office", "image_url": "ghcr.io/mrmarkuz/euro-office:latest"}
 
 ## Configure
 
@@ -24,9 +24,9 @@ The FQDN needs to be configured in the Web UI app settings. The FQDN is required
 
 ## JWT Secret
 
-To get the JWT secret that needs to be configured in client apps like Nextcloud: (in this example the instance is named onlyoffice1)
+To get the JWT secret that needs to be configured in client apps like Nextcloud: (in this example the instance is named euro-office1)
 
-    runagent -m onlyoffice1 grep JWT_SECRET environment
+    runagent -m euro-office1 grep JWT_SECRET environment
 
 ## Nextcloud
 
@@ -37,34 +37,34 @@ To get the JWT secret that needs to be configured in client apps like Nextcloud:
 
 ## Ad blockers
 
-Since Onlyoffice 9.4 (ns8-onlyoffice 1.1.7) ad blockers may block Onlyoffice so you may need to add an exception.
+Since Onlyoffice 9.4 (ns8-euro-office 1.1.7) ad blockers may block Onlyoffice so you may need to add an exception.
 
 ## Customize configuration
 
 Since this setup uses the official Docker image, the local.json file is regenerated each time the container starts, meaning it’s not directly mappable or persistent on the host. Any manual changes made to local.json inside the container are lost after a restart.
 
-The proper workaround is to create the file `/home/onlyoffice1/.local/share/containers/storage/volumes/onlyoffice-etc/_data/local-production-linux.json`. This file takes precedence over the default configuration and remains persistent across container restarts. Any changes made there are applied automatically on startup.
+The proper workaround is to create the file `/home/euro-office1/.local/share/containers/storage/volumes/euro-office-etc/_data/local-production-linux.json`. This file takes precedence over the default configuration and remains persistent across container restarts. Any changes made there are applied automatically on startup.
 
 ## Use a self signed cert or how to disable the certificate check
 
 Open the Onlyoffice web app in your browser and allow the self-signed certificate to avoid an `ONLYOFFICE cannot be reached. Please contact admin` error in Nextcloud.
 
-In the following examples onlyoffice6 is used as app instance name, please change it to match your environment.
+In the following examples euro-office6 is used as app instance name, please change it to match your environment.
 
 Edit the environment file and add "USE_UNAUTHORIZED_STORAGE=true":
 
-    runagent -m onlyoffice1 nano environment
+    runagent -m euro-office1 nano environment
 
 Alternative command to add the environment variable:
 
-    runagent -m onlyoffice1 bash -c "grep -q USE_UNAUTHORIZED_STORAGE environment || echo USE_UNAUTHORIZED_STORAGE=true >> environment"
+    runagent -m euro-office1 bash -c "grep -q USE_UNAUTHORIZED_STORAGE environment || echo USE_UNAUTHORIZED_STORAGE=true >> environment"
 
-Restart onlyoffice to apply the changes:
+Restart euro-office to apply the changes:
 
-    runagent -m onlyoffice1 systemctl --user restart onlyoffice-app
+    runagent -m euro-office1 systemctl --user restart euro-office-app
 
 ## Uninstall
 
 To uninstall the instance:
 
-    remove-module --no-preserve onlyoffice1
+    remove-module --no-preserve euro-office1
