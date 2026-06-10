@@ -12,7 +12,4 @@ set -e
 # Redirect any output to the journal (stderr)
 exec 1>&2
 
-# Remove euro-office-etc volume to make the nginx update work
-podman volume rm -f euro-office-etc
-
 systemctl --user try-restart euro-office.service

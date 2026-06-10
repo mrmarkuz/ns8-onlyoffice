@@ -10,8 +10,8 @@ After=euro-office.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n
-EnvironmentFile=%S/state/environment
-WorkingDirectory=%S/state
+EnvironmentFile=%E/state/environment
+WorkingDirectory=%E/state
 Restart=always
 TimeoutStopSec=70
 #ExecStartPre=/usr/bin/podman volume prune --force
@@ -19,15 +19,15 @@ ExecStartPre=/bin/rm -f %t/euro-office-app.pid %t/euro-office-app.ctr-id
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/euro-office-app.pid \
     --cidfile %t/euro-office-app.ctr-id --cgroups=no-conmon \
     --pod-id-file %t/euro-office.pod-id --replace -d --name euro-office-app \
-    --env-file=%S/state/environment \
-    --volume euro-office-log:/var/log/euro-office:Z \
-    --volume euro-office-data:/var/www/euro-office/Data:Z \
-    --volume euro-office-lib:/var/lib/euro-office:Z \
-    --volume euro-office-rabbitmq:/var/lib/rabbitmq:Z \
-    --volume euro-office-redis:/var/lib/redis:Z \
-    --volume euro-office-db:/var/lib/postgresql:Z \
-    --volume euro-office-fonts:/usr/share/fonts/truetype/custom:Z \
-    --volume euro-office-etc:/etc/euro-office/documentserver:Z \
+    --env-file=%E/state/environment \
+#    --volume euro-office-log:/var/log/euro-office:Z \
+#    --volume euro-office-data:/var/www/euro-office/Data:Z \
+#    --volume euro-office-lib:/var/lib/euro-office:Z \
+#    --volume euro-office-rabbitmq:/var/lib/rabbitmq:Z \
+#    --volume euro-office-redis:/var/lib/redis:Z \
+#    --volume euro-office-db:/var/lib/postgresql:Z \
+#    --volume euro-office-fonts:/usr/share/fonts/truetype/custom:Z \
+#    --volume euro-office-etc:/etc/euro-office/documentserver:Z \
     ${DOCUMENTSERVER_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/euro-office-app.ctr-id -t 10
 ExecReload=/usr/bin/podman kill -s HUP euro-office-app

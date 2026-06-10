@@ -1,13 +1,13 @@
 # ns8-euro-office
 
-This is the Onlyoffice app for NethServer 8.
+This is the Euro-Office app for NethServer 8.
 
 ## Install
 
 Install via Software center:
 
   - Add a Software repository pointing to `https://repo.mrmarkuz.com/ns8/updates/`, check out the [repo webpage](https://repo.mrmarkuz.com) how to do it.
-  - Install Onlyoffice via Software Center
+  - Install Euro-Office via Software Center
 
 Instantiate the module on CLI with:
 
@@ -30,20 +30,10 @@ To get the JWT secret that needs to be configured in client apps like Nextcloud:
 
 ## Nextcloud
 
-- Install the ONLYOFFICE app
-- Go to Nextcloud administration Onlyoffice app settings
-- Set the "Onlyoffice Docs address" that is the FQDN of the Onlyoffice app.
+- Install the eurooffice app, see https://github.com/Euro-Office/eurooffice-nextcloud#installing-euro-office-app-for-nextcloud-
+- Go to Nextcloud administration Eurooffice app settings
+- Set the "Office address" that is the FQDN of the Eurooffice app.
 - Set the "Secret key" that you got from the previous chapter.
-
-## Ad blockers
-
-Since Onlyoffice 9.4 (ns8-euro-office 1.1.7) ad blockers may block Onlyoffice so you may need to add an exception.
-
-## Customize configuration
-
-Since this setup uses the official Docker image, the local.json file is regenerated each time the container starts, meaning it’s not directly mappable or persistent on the host. Any manual changes made to local.json inside the container are lost after a restart.
-
-The proper workaround is to create the file `/home/euro-office1/.local/share/containers/storage/volumes/euro-office-etc/_data/local-production-linux.json`. This file takes precedence over the default configuration and remains persistent across container restarts. Any changes made there are applied automatically on startup.
 
 ## Use a self signed cert or how to disable the certificate check
 
