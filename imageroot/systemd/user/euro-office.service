@@ -21,7 +21,7 @@ TimeoutStopSec=70
 ExecStartPre=/bin/rm -f %t/euro-office.pid %t/euro-office.pod-id
 ExecStartPre=/usr/bin/podman pod create --infra-conmon-pidfile %t/euro-office.pid \
     --pod-id-file %t/euro-office.pod-id \
-    --network=slirp4netns:allow_host_loopback=true \
+    --network=slirp4netns \
     --name euro-office \
     --publish 127.0.0.1:${TCP_PORT}:80 \
     --replace
