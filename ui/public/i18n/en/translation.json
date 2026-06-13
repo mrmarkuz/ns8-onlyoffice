@@ -19,7 +19,7 @@
     "no_services": "No services",
     "no_images": "No images",
     "no_volumes": "No volumes",
-    "euro-office_webapp": "euro-office webapp",
+    "euro-office_webapp": "Euro-Office webapp",
     "not_configured": "Not configured",
     "open_webapp": "Open euro-office",
     "configure": "Configure"
@@ -28,7 +28,7 @@
     "title": "Settings",
     "configure_instance": "Configure {instance}",
     "save": "Save",
-    "euro-office_fqdn": "Onlyoffice hostname (FQDN)",
+    "euro-office_fqdn": "Euro-Office hostname (FQDN)",
     "lets_encrypt": "Request LE Certificate",
     "http_to_https": "Force HTTPS",
     "enabled": "Enabled",

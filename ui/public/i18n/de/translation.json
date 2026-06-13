@@ -16,7 +16,7 @@
         "configure_instance": "{instance} konfigurieren",
         "save": "Speichern",
         "title": "Einstellungen",
-        "euro-office_fqdn": "Onlyoffice Hostname (FQDN)",
+        "euro-office_fqdn": "Euro-Office Hostname (FQDN)",
         "lets_encrypt": "LE Zertifikat anfordern",
         "http_to_https": "HTTPS erzwingen"
     },
@@ -40,9 +40,9 @@
         "installation_node": "Knoten der Installation",
         "node": "Knoten",
         "no_volumes": "keine Volumen",
-        "euro-office_webapp": "Onlyoffice Web App",
+        "euro-office_webapp": "Euro-Office Web App",
         "not_configured": "Nicht konfiguriert",
-        "open_webapp": "Onlyoffice öffnen",
+        "open_webapp": "Euro-Office öffnen",
         "configure": "Konfigurieren"
     },
     "about": {

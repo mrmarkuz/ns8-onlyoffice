@@ -1,9 +1,9 @@
 {
   "name": "euro-office",
   "description": {
-    "en": "Online document editor"
+    "en": "Euro-Office is a self-hostable document server"
   },
-  "categories": [],
+  "categories": ["office"],
   "authors": [
     {
       "name": "Markus Neuberger",
@@ -11,7 +11,7 @@
     }
   ],
   "docs": {
-    "documentation_url": "https://helpcenter.euro-office.com/userguides/docs-de.aspx",
+    "documentation_url": "https://euro-office.github.io/documentation",
     "bug_url": "https://community.nethserver.org",
     "code_url": "https://github.com/mrmarkuz/ns8-euro-office"
   },
