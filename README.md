@@ -20,7 +20,7 @@ Output example:
 
 ## Configure
 
-The FQDN needs to be configured in the Web UI app settings. The FQDN is required. It should be a unique FQDN that's not already used in your NS8 else Onlyoffice won't be reachable.
+The FQDN needs to be configured in the Web UI app settings. The FQDN is required. It should be a unique FQDN that's not already used in your NS8 else Euro Office won't be reachable.
 
 ## JWT Secret
 
@@ -30,24 +30,24 @@ To get the JWT secret that needs to be configured in client apps like Nextcloud:
 
 ## Nextcloud
 
-- Install the eurooffice app, see https://github.com/Euro-Office/eurooffice-nextcloud#installing-euro-office-app-for-nextcloud-
-- Go to Nextcloud administration Eurooffice app settings
-- Set the "Office address" that is the FQDN of the Eurooffice app.
+- Install the Nextcloud Office 11.0. app, see https://github.com/Euro-Office/eurooffice-nextcloud#installing-euro-office-app-for-nextcloud-
+- Go to Nextcloud administration Nextcloud Office app settings
+- Set the "Nextcloud Office address" that is the FQDN of the Eurooffice app like `https://eurooffice.domain.tld`
 - Set the "Secret key" that you got from the previous chapter.
 
-## Use a self signed cert or how to disable the certificate check
+## Fetch documents from a private IP
 
-Open the Onlyoffice web app in your browser and allow the self-signed certificate to avoid an `ONLYOFFICE cannot be reached. Please contact admin` error in Nextcloud.
+If Nextcloud resolves to a private IP an environment variable needs to be added.
 
-In the following examples euro-office6 is used as app instance name, please change it to match your environment.
+In the following examples euro-office1 is used as app instance name, please change it to match your environment.
 
-Edit the environment file and add "USE_UNAUTHORIZED_STORAGE=true":
+Edit the environment file and add "ALLOW_PRIVATE_IP_ADDRESS=true":
 
     runagent -m euro-office1 nano environment
 
 Alternative command to add the environment variable:
 
-    runagent -m euro-office1 bash -c "grep -q USE_UNAUTHORIZED_STORAGE environment || echo USE_UNAUTHORIZED_STORAGE=true >> environment"
+    runagent -m euro-office1 bash -c "grep -q ALLOW_PRIVATE_IP_ADDRESS environment || echo ALLOW_PRIVATE_IP_ADDRESS=true >> environment"
 
 Restart euro-office to apply the changes:
 
