@@ -30,7 +30,7 @@ To get the JWT secret that needs to be configured in client apps like Nextcloud:
 
 ## Nextcloud
 
-- Install the Nextcloud Office 11.0. app 
+- Install the Nextcloud Office 11.0.0 app 
 - Go to Nextcloud administration Nextcloud Office app settings
 - Set the "Nextcloud Office address" that is the FQDN of the Eurooffice app like `https://eurooffice.domain.tld`
 - Set the "Secret key" that you got from the previous chapter
