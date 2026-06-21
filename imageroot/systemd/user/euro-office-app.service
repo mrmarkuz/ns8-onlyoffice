@@ -21,7 +21,7 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/euro-office-app.pid \
     --pod-id-file %t/euro-office.pod-id --replace -d --name euro-office-app \
     --env-file=%E/state/environment \
     --volume euro-office-data:/var/lib/euro-office/documentserver:z \
-    --volume euro-office-log:/var/log/euro-office/documentserver:z \    
+    --volume euro-office-log:/var/log/euro-office/documentserver:z \
     --volume euro-office-config:/etc/euro-office/documentserver:z \
     ${DOCUMENTSERVER_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/euro-office-app.ctr-id -t 10
