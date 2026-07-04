@@ -1,60 +1,70 @@
-# ns8-euro-office
+# ns8-onlyoffice
 
-This is the Euro-Office app for NethServer 8.
+This is the Onlyoffice app for NethServer 8.
 
 ## Install
 
 Install via Software center:
 
   - Add a Software repository pointing to `https://repo.mrmarkuz.com/ns8/updates/`, check out the [repo webpage](https://repo.mrmarkuz.com) how to do it.
-  - Install Euro-Office via Software Center
+  - Install Onlyoffice via Software Center
 
 Instantiate the module on CLI with:
 
-    add-module ghcr.io/mrmarkuz/euro-office:latest 1
+    add-module ghcr.io/mrmarkuz/onlyoffice:latest 1
 
 The output of the command will return the instance name.
 Output example:
 
-    {"module_id": "euro-office1", "image_name": "euro-office", "image_url": "ghcr.io/mrmarkuz/euro-office:latest"}
+    {"module_id": "onlyoffice1", "image_name": "onlyoffice", "image_url": "ghcr.io/mrmarkuz/onlyoffice:latest"}
 
 ## Configure
 
-The FQDN needs to be configured in the Web UI app settings. The FQDN is required. It should be a unique FQDN that's not already used in your NS8 else Euro Office won't be reachable.
+The FQDN needs to be configured in the Web UI app settings. The FQDN is required. It should be a unique FQDN that's not already used in your NS8 else Onlyoffice won't be reachable.
 
 ## JWT Secret
 
-To get the JWT secret that needs to be configured in client apps like Nextcloud: (in this example the instance is named euro-office1)
+To get the JWT secret that needs to be configured in client apps like Nextcloud: (in this example the instance is named onlyoffice1)
 
-    runagent -m euro-office1 grep JWT_SECRET environment
+    runagent -m onlyoffice1 grep JWT_SECRET environment
 
 ## Nextcloud
 
-- Install the Nextcloud Office 11.0.0 app 
-- Go to Nextcloud administration Nextcloud Office app settings
-- Set the "Nextcloud Office address" that is the FQDN of the Eurooffice app like `https://eurooffice.domain.tld`
-- Set the "Secret key" that you got from the previous chapter
+- Install the ONLYOFFICE app
+- Go to Nextcloud administration Onlyoffice app settings
+- Set the "Onlyoffice Docs address" that is the FQDN of the Onlyoffice app.
+- Set the "Secret key" that you got from the previous chapter.
 
-## Fetch documents from a private IP
+## Ad blockers
 
-If Nextcloud resolves to a private IP an environment variable needs to be added.
+Since Onlyoffice 9.4 (ns8-onlyoffice 1.1.7) ad blockers may block Onlyoffice so you may need to add an exception.
 
-In the following examples euro-office1 is used as app instance name, please change it to match your environment.
+## Customize configuration
 
-Edit the environment file and add "ALLOW_PRIVATE_IP_ADDRESS=true":
+Since this setup uses the official Docker image, the local.json file is regenerated each time the container starts, meaning it’s not directly mappable or persistent on the host. Any manual changes made to local.json inside the container are lost after a restart.
 
-    runagent -m euro-office1 nano environment
+The proper workaround is to create the file `/home/onlyoffice1/.local/share/containers/storage/volumes/onlyoffice-etc/_data/local-production-linux.json`. This file takes precedence over the default configuration and remains persistent across container restarts. Any changes made there are applied automatically on startup.
+
+## Use a self signed cert or how to disable the certificate check
+
+Open the Onlyoffice web app in your browser and allow the self-signed certificate to avoid an `ONLYOFFICE cannot be reached. Please contact admin` error in Nextcloud.
+
+In the following examples onlyoffice6 is used as app instance name, please change it to match your environment.
+
+Edit the environment file and add "USE_UNAUTHORIZED_STORAGE=true":
+
+    runagent -m onlyoffice1 nano environment
 
 Alternative command to add the environment variable:
 
-    runagent -m euro-office1 bash -c "grep -q ALLOW_PRIVATE_IP_ADDRESS environment || echo ALLOW_PRIVATE_IP_ADDRESS=true >> environment"
+    runagent -m onlyoffice1 bash -c "grep -q USE_UNAUTHORIZED_STORAGE environment || echo USE_UNAUTHORIZED_STORAGE=true >> environment"
 
-Restart euro-office to apply the changes:
+Restart onlyoffice to apply the changes:
 
-    runagent -m euro-office1 systemctl --user restart euro-office-app
+    runagent -m onlyoffice1 systemctl --user restart onlyoffice-app
 
 ## Uninstall
 
 To uninstall the instance:
 
-    remove-module --no-preserve euro-office1
+    remove-module --no-preserve onlyoffice1
