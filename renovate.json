@@ -1,23 +1,6 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
-  "ignorePaths": [
-    "**/ui/**",
-    "**/.devcontainer/**"
-  ],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "managerFilePatterns": [
-        "/build-images.sh/"
-      ],
-      "matchStrings": [
-        "docker\\.io/onlyoffice/documentserver:(?<currentValue>[-0-9\\.a-z]+)"
-      ],
-      "datasourceTemplate": "docker",
-      "depNameTemplate": "onlyoffice/documentserver"
-    }
-  ]
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "local>NethServer/.github:ns8-automerge"
+    ]
 }
