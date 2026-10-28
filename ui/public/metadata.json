@@ -1,9 +1,13 @@
 {
   "name": "onlyoffice",
   "description": {
-    "en": "Online document editor"
+    "en": "ONLYOFFICE is a free, open-source office suite and collaborative productivity platform used to create, edit, and work together on text documents, spreadsheets, presentations, and PDFs",
+    "de": "ONLYOFFICE ist eine kostenlose Open-Source-Office-Suite sowie eine Plattform für kollaboratives Arbeiten zum Erstellen und Bearbeiten von Textdokumenten, Tabellenkalkulationen, Präsentationen und PDFs",
+    "fr": "ONLYOFFICE est une suite bureautique gratuite et open source, ainsi qu’une plateforme de productivité collaborative, permettant de créer, de modifier et de travailler collectivement sur des documents texte, des feuilles de calcul, des présentations et des fichiers PDF",
+    "it": "ONLYOFFICE è una suite per ufficio gratuita e open source, nonché una piattaforma di produttività collaborativa, utilizzata per creare, modificare e lavorare insieme su documenti di testo, fogli di calcolo, presentazioni e file PDF",
+    "es": "ONLYOFFICE es una suite ofimática de código abierto y gratuita, además de una plataforma de productividad colaborativa, utilizada para crear, editar y trabajar de forma conjunta en documentos de texto, hojas de cálculo, presentaciones y archivos PDF"
   },
-  "categories": [],
+  "categories": ["office"],
   "authors": [
     {
       "name": "Markus Neuberger",
