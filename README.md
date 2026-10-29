@@ -45,6 +45,32 @@ Since this setup uses the official Docker image, the local.json file is regenera
 
 The proper workaround is to create the file `/home/onlyoffice1/.local/share/containers/storage/volumes/onlyoffice-etc/_data/local-production-linux.json`. This file takes precedence over the default configuration and remains persistent across container restarts. Any changes made there are applied automatically on startup.
 
+## Compressed responses are not decoded (CVE-2026-111497 mitigation)
+
+The Document Server binaries bundle Node.js 20, which is end-of-life and affected by
+[CVE-2026-111497](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases)
+(out-of-bounds write in the Brotli decoder). Document Server downloads URLs that users can
+choose, for example when inserting an image from a URL, so a hostile web server could reach
+that decoder.
+
+Until ONLYOFFICE publishes a Community build on a fixed Node.js line, the container starts
+through the wrapper `~/.config/bin/onlyoffice-entrypoint` of the module user (`imageroot/bin/`
+in this repository), which sets in `local.json`:
+
+    "requestDefaults": { "gzip": false, "decompress": false }
+
+Document Server then asks for uncompressed responses (`Accept-Encoding: identity`) and does
+not decompress a response even if a server sends one compressed. Servers that honour
+`Accept-Encoding`, like Nextcloud, are not affected by this change.
+
+Known limitation: a server that ignores `Accept-Encoding: identity` and still sends a
+compressed body (for example an S3 bucket or CDN object stored with `Content-Encoding: gzip`,
+or a misconfigured proxy) now delivers the compressed bytes. A conversion then produces a
+broken document, and saving through a callback fails. Serve such files uncompressed.
+
+Do not set `requestDefaults.decompress` or `requestDefaults.gzip` in
+`local-production-linux.json`: that file takes precedence and would switch the mitigation off.
+
 ## Use a self signed cert or how to disable the certificate check
 
 Open the Onlyoffice web app in your browser and allow the self-signed certificate to avoid an `ONLYOFFICE cannot be reached. Please contact admin` error in Nextcloud.

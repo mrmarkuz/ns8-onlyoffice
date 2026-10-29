@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+# Container entrypoint wrapper for onlyoffice/documentserver.
+#
+# The Document Server binaries (docservice, converter) bundle Node.js 20,
+# which is end-of-life and affected by CVE-2026-111497: its Brotli decoder
+# can be driven out of bounds by a crafted "Content-Encoding: br" response.
+# Document Server downloads URLs supplied by users (e.g. "insert image from
+# URL"), so a hostile web server can reach that decoder.
+#
+# Until ONLYOFFICE ships a Community build on a fixed Node.js line, tell the
+# HTTP client not to decompress responses (decompress=false) and to ask for
+# uncompressed ones (gzip=false sends "Accept-Encoding: identity").
+# local.json is edited in place, like the upstream entrypoint does for
+# USE_UNAUTHORIZED_STORAGE; local-production-linux.json still takes
+# precedence for admin customizations.
+
+set -e
+
+json_bin=/var/www/onlyoffice/documentserver/npm/json
+config_file=/etc/onlyoffice/documentserver/local.json
+
+"${json_bin}" -q -I -f "${config_file}" -e '
+    this.services.CoAuthoring.requestDefaults ||= {};
+    this.services.CoAuthoring.requestDefaults.gzip = false;
+    this.services.CoAuthoring.requestDefaults.decompress = false'
+
+exec /app/ds/run-document-server.sh "$@"
