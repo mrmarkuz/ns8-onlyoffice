@@ -1,4 +1,4 @@
-FROM node:24-bookworm
+FROM node:26-bookworm
 RUN (command -v corepack >/dev/null || npm install -g corepack) \
     && corepack enable \
     && yarn set version stable
